@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/SolarSystem/static/css/main.68b41c0b.css",
+    "main.js": "/SolarSystem/static/js/main.5e81a38a.js",
+    "index.html": "/SolarSystem/index.html",
+    "main.68b41c0b.css.map": "/SolarSystem/static/css/main.68b41c0b.css.map",
+    "main.5e81a38a.js.map": "/SolarSystem/static/js/main.5e81a38a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.68b41c0b.css",
+    "static/js/main.5e81a38a.js"
+  ]
+}

@@ -2,11 +2,14 @@ import { useState, useEffect, useRef } from "react";
 
 import moment from "moment";
 
-import useWindowDimensions from "../Hooks/useWindowDimensions";
-import { planets } from "../Common/Planets";
 import { BASE_MODEL_RADIUS } from "../Common/AppSettings";
 import { RELATIVE_RADIUS } from "../Common/AstroData";
-import Labels from "../Common/Labels";
+import { drawObject, getCoordinates } from "../Common/Helpers";
+import LABELS from "../Common/Labels";
+import { planets } from "../Common/Planets";
+
+import useWindowDimensions from "../Hooks/useWindowDimensions";
+import { COLORS } from "../Common/Colors";
 
 const Canvas = () => {
   const { height, width } = useWindowDimensions();
@@ -36,17 +39,19 @@ const Canvas = () => {
 
         //Draw the planets
         planets.map((planet) => {
-          const planetPosition = (timeSpan * 360) / planet.siderealPeriod;
-          const planetX = centerX + planet.modelOrbit * Math.cos(planetPosition * (Math.PI / 180));
-          const planetY = centerY + planet.modelOrbit * Math.sin(planetPosition * (Math.PI / 180));
-          drawObject(context, planetX, planetY, planet.modelRadius, planet.color);
+          const planetCoordinates = getCoordinates(centerX, centerY, planet.modelOrbit, (timeSpan * 360) / planet.siderealPeriod);
+          drawObject(context, planetCoordinates.x, planetCoordinates.y, planet.modelRadius, planet.color);
+
           //Draw the satellites
           if (planet.satellites) {
             planet.satellites.map((satellite) => {
-              const satellitePosition = (timeSpan * 360) / satellite.siderealPeriod;
-              const satelliteX = planetX + satellite.modelOrbit * Math.cos(satellitePosition * (Math.PI / 180));
-              const satelliteY = planetY + satellite.modelOrbit * Math.sin(satellitePosition * (Math.PI / 180));
-              drawObject(context, satelliteX, satelliteY, satellite.modelRadius, "#c6c6c6");
+              const satelliteCoordinates = getCoordinates(
+                planetCoordinates.x,
+                planetCoordinates.y,
+                satellite.modelOrbit,
+                (timeSpan * 360) / satellite.siderealPeriod
+              );
+              drawObject(context, satelliteCoordinates.x, satelliteCoordinates.y, satellite.modelRadius, COLORS.Satelitte);
               return null;
             });
           }
@@ -60,52 +65,43 @@ const Canvas = () => {
 
   if (intervalValue < 10) setIntervalValue(1000);
 
-  const drawObject = (ctx, positionX, positionY, radius, color) => {
-    ctx.beginPath();
-    ctx.arc(positionX, positionY, radius, 0, 2 * Math.PI);
-    ctx.fillStyle = color;
-    ctx.fill();
-  };
-
   return (
     <section>
       <div className="container">
-        <div className="console mt-3">
-          <div className="d-flex flex-column col-3">
+        <div className="d-flex flex-column flex-lg-row console mt-3">
+          <div className="d-flex flex-column col-12 col-lg-3">
             <div>
-              {Labels.CURRENT_DATE} {currentDate.format("LL")}
+              {LABELS.CURRENT_DATE} {currentDate.format("LL")}
             </div>
             <div>
-              {Labels.MODELS_DATE} {modelDate.format("LL")}
+              {LABELS.MODELS_DATE} {modelDate.format("LL")}
             </div>
             <div>
-              {Labels.TIMESPAN}
+              {LABELS.TIMESPAN}
               {timeSpan}
             </div>
           </div>
           <div>
             <span>
-              {Labels.COMPARE} {Math.floor(1000 / intervalValue)}
-              {intervalValue === 1000 ? Labels.DAY : Labels.DAYS}
+              {LABELS.COMPARE} {Math.floor(1000 / intervalValue)}
+              {intervalValue === 1000 ? LABELS.DAY : LABELS.DAYS}
             </span>
             <button className="btn btn-light" onClick={() => setIntervalValue((intervalValue) => intervalValue / 10)}>
               &gt;&gt; 10x
             </button>
-          </div>
-          <div>
             <button className="btn btn-warning" onClick={() => setIntervalValue(30)}>
-              {Labels.ANIMATION}
+              {LABELS.ANIMATION}
             </button>
           </div>
           <div>
             <button className="btn btn-primary" onClick={() => setModelDate((prev) => prev.add(1, "w"))}>
-              {Labels.ADD_WEEK}
+              {LABELS.ADD_WEEK}
             </button>
             <button className="btn btn-primary" onClick={() => setModelDate((prev) => prev.add(1, "M"))}>
-              {Labels.ADD_MONTH}
+              {LABELS.ADD_MONTH}
             </button>
             <button className="btn btn-primary" onClick={() => setModelDate((prev) => prev.add(1, "y"))}>
-              {Labels.ADD_YEAR}
+              {LABELS.ADD_YEAR}
             </button>
           </div>
         </div>
