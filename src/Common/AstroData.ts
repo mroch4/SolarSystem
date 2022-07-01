@@ -1,4 +1,4 @@
-export const XAVIER_MOISSON = 365.242190419;
+export const EARTH_SIDEREAL = 365.2421896698;
 
 export const RELATIVE_RADIUS = {
   Sun: 3.5,
@@ -27,12 +27,12 @@ export const RELATIVE_RADIUS = {
 
 export const SIDEREALS = {
   Mercury: 87.9691,
-  Venus: 225,
-  Mars: 1.881 * XAVIER_MOISSON,
-  Jupiter: 11.86 * XAVIER_MOISSON,
-  Saturn: 29.46 * XAVIER_MOISSON,
-  Uranus: 84.01 * XAVIER_MOISSON,
-  Neptune: 164.8 * XAVIER_MOISSON,
+  Venus: 224.7,
+  Mars: 1.881 * EARTH_SIDEREAL,
+  Jupiter: 11.86 * EARTH_SIDEREAL,
+  Saturn: 29.46 * EARTH_SIDEREAL,
+  Uranus: 84.01 * EARTH_SIDEREAL,
+  Neptune: 164.8 * EARTH_SIDEREAL,
 
   //SATELLITES (alphabetically):
   Callisto: 16.69,
@@ -43,5 +43,5 @@ export const SIDEREALS = {
   Oberon: 13.46,
   Titan: 15.95,
   Titania: 8.706,
-  Triton: 5.877,
+  Triton: -5.877,
 };

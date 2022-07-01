@@ -89,7 +89,7 @@ const Canvas = () => {
             <button className="btn btn-light" onClick={() => setIntervalValue((intervalValue) => intervalValue / 10)}>
               &gt;&gt; 10x
             </button>
-            <button className="btn btn-warning" onClick={() => setIntervalValue(30)}>
+            <button className="btn btn-warning" onClick={() => setIntervalValue(25)}>
               {LABELS.ANIMATION}
             </button>
           </div>

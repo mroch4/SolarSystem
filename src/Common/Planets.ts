@@ -1,5 +1,5 @@
 import { BASE_MODEL_ORBIT, BASE_MODEL_RADIUS } from "./AppSettings";
-import { RELATIVE_RADIUS, SIDEREALS, XAVIER_MOISSON } from "./AstroData";
+import { RELATIVE_RADIUS, SIDEREALS, EARTH_SIDEREAL } from "./AstroData";
 import { COLORS } from "./Colors";
 
 interface Satellite {
@@ -30,7 +30,7 @@ export const planets: Planet[] = [
   },
   {
     color: COLORS.Earth,
-    siderealPeriod: XAVIER_MOISSON,
+    siderealPeriod: EARTH_SIDEREAL,
     modelRadius: BASE_MODEL_RADIUS,
     modelOrbit: 2.58 * BASE_MODEL_ORBIT,
     satellites: [

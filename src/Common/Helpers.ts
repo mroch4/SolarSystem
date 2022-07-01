@@ -1,10 +1,10 @@
-export const degToRad = (degrees: number): number => {
+const degreesToRadians = (degrees: number): number => {
   return (degrees * Math.PI) / 180;
 };
 
 export const getCoordinates = (centerX: number, centerY: number, orbit: number, position: number) => {
-  const x = centerX + orbit * Math.cos(degToRad(position));
-  const y = centerY + orbit * Math.sin(degToRad(position));
+  const x = centerX + orbit * Math.cos(degreesToRadians(position));
+  const y = centerY + orbit * Math.sin(degreesToRadians(position));
   return { x, y };
 };
 
