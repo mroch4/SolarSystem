@@ -25,14 +25,14 @@ export const planets: Planet[] = [
     color: COLORS.Venus,
     siderealPeriod: SIDEREALS.Venus,
     modelRadius: BASE_MODEL_RADIUS * RELATIVE_RADIUS.Venus,
-    modelOrbit: 1.87 * BASE_MODEL_ORBIT,
+    modelOrbit: 1.869 * BASE_MODEL_ORBIT,
     satellites: null,
   },
   {
     color: COLORS.Earth,
     siderealPeriod: EARTH_SIDEREAL,
     modelRadius: BASE_MODEL_RADIUS,
-    modelOrbit: 2.58 * BASE_MODEL_ORBIT,
+    modelOrbit: 2.583 * BASE_MODEL_ORBIT,
     satellites: [
       {
         siderealPeriod: SIDEREALS.Moon,
@@ -45,7 +45,7 @@ export const planets: Planet[] = [
     color: COLORS.Mars,
     siderealPeriod: SIDEREALS.Mars,
     modelRadius: BASE_MODEL_RADIUS * RELATIVE_RADIUS.Mars,
-    modelOrbit: 3.94 * BASE_MODEL_ORBIT,
+    modelOrbit: 3.936 * BASE_MODEL_ORBIT,
     satellites: null,
   },
   {

@@ -4,12 +4,11 @@ import moment from "moment";
 
 import { BASE_MODEL_RADIUS } from "../Common/AppSettings";
 import { RELATIVE_RADIUS } from "../Common/AstroData";
+import { COLORS } from "../Common/Colors";
 import { drawObject, getCoordinates } from "../Common/Helpers";
 import LABELS from "../Common/Labels";
 import { planets } from "../Common/Planets";
-
 import useWindowDimensions from "../Hooks/useWindowDimensions";
-import { COLORS } from "../Common/Colors";
 
 const Canvas = () => {
   const { height, width } = useWindowDimensions();
@@ -35,7 +34,7 @@ const Canvas = () => {
         setModelDate((date) => moment(date).add(1, "days"));
 
         //Draw the Sun
-        drawObject(context, centerX, centerY, BASE_MODEL_RADIUS * RELATIVE_RADIUS.Sun, "yellow");
+        drawObject(context, centerX, centerY, BASE_MODEL_RADIUS * RELATIVE_RADIUS.Sun, ["yellow"]);
 
         //Draw the planets
         planets.map((planet) => {
