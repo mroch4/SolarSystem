@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/SolarSystem/static/css/main.68b41c0b.css",
-    "main.js": "/SolarSystem/static/js/main.7fc10c39.js",
+    "main.css": "/SolarSystem/static/css/main.1581f54d.css",
+    "main.js": "/SolarSystem/static/js/main.ac5821bb.js",
     "index.html": "/SolarSystem/index.html",
-    "main.68b41c0b.css.map": "/SolarSystem/static/css/main.68b41c0b.css.map",
-    "main.7fc10c39.js.map": "/SolarSystem/static/js/main.7fc10c39.js.map"
+    "main.1581f54d.css.map": "/SolarSystem/static/css/main.1581f54d.css.map",
+    "main.ac5821bb.js.map": "/SolarSystem/static/js/main.ac5821bb.js.map"
   },
   "entrypoints": [
-    "static/css/main.68b41c0b.css",
-    "static/js/main.7fc10c39.js"
+    "static/css/main.1581f54d.css",
+    "static/js/main.ac5821bb.js"
   ]
 }
