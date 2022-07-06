@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Solar System
 
 Simple React App which mimics [the steampunk model](https://www.google.com/search?q=steampunk+solar+system&rlz=1C1GCEA_enPL968PL968&source=lnms&tbm=isch&sa=X&ved=2ahUKEwj_vNbSgd_4AhVgRvEDHZXlBtkQ_AUoAXoECAMQAw&biw=1920&bih=1089&dpr=1) of the Solar System.
 
@@ -23,7 +23,7 @@ Scale for radius:
 
 Scale for distance:
 
-| Index | Planet Name | D/E\*  | D/M\*  | Model |       Other info        |
+| Index | Planet Name | d/E\*  | d/M\*  | Model |       Other info        |
 | :---: | ----------- | :----: | :----: | :---: | :---------------------: |
 |   1   | Mercury     | 0.387  | 1.000  | 1.000 |           OK            |
 |   2   | Venus       | 0.723  | 1.869  | 1.869 |           OK            |
@@ -34,7 +34,7 @@ Scale for distance:
 |   7   | Uranus      | 19.191 | 49.577 | 9.000 | Should be 5.509 further |
 |   8   | Neptune     | 30.069 | 77.678 | 10.50 | Should be 7.398 further |
 
-\*d/E = distance in correlation to distance between the Sun and the Earth
+\*d/E = distance in correlation to distance between the Sun and the Earth,\
 \*d/M = distance in correlation to distance between the Sun and Mercury
 
 Scale for satellite radius (all the satellites are 1.25x bigger than they should be):
@@ -50,12 +50,12 @@ Scale for satellite radius (all the satellites are 1.25x bigger than they should
 |   G   | Oberon         | 0.438 | 0.1195 |    0.1493     |
 |   H   | Trition        | 0.779 | 0.2124 |    0.2654     |
 
-\*r/M = radius in correlation to Moon's radius
+\*r/M = radius in correlation to Moon's radius,\
 \*r/E = radius in correlation to Earth's radius
 
 Legend:
 
-![Screenshot](legend.png)
+![Screenshot](screenshot.png)
 
 ## TODO's
 

@@ -90,28 +90,31 @@ const Canvas = () => {
   const buttonClasses = "btn btn-primary btn-sm mt-2";
 
   return (
-    <div className="container">
-      <section className="panel left">
-        <Dates currentDate={currentDate} modelDate={modelDate} timeSpan={timeSpan} />
-        <SpeedMeter intervalValue={intervalValue} />
-        {animationMode ? null : (
-          <Button
-            className="btn btn-light btn-sm mt-2"
-            textContent="&gt;&gt; 10x"
-            onClick={() => setIntervalValue((intervalValue) => intervalValue / 10)}
-          />
-        )}
-        <Button className={buttonClasses} textContent={LABELS.ADD_WEEK} onClick={() => setModelDate((prev) => prev.add(1, "w"))} />
-        <Button className={buttonClasses} textContent={LABELS.ADD_MONTH} onClick={() => setModelDate((prev) => prev.add(1, "M"))} />
-        <Button className={buttonClasses} textContent={LABELS.ADD_YEAR} onClick={() => setModelDate((prev) => prev.add(1, "y"))} />
-      </section>
-      <section className="panel right">
-        <Checkbox checked={animationMode} handleOnChange={handleAnimationToggler} label={LABELS.ANIMATION} />
-        <Checkbox checked={showOrbits} handleOnChange={() => toggleShowingOrbits(!showOrbits)} label={LABELS.SHOW_ORBITS} />
-        <Checkbox checked={clearMode} handleOnChange={() => toggleclearMode(!clearMode)} label={LABELS.CLEAR_CANVAS} />
-      </section>
+    <>
+      <div className="container">
+          <section className="panel left">
+            <Dates currentDate={currentDate} modelDate={modelDate} timeSpan={timeSpan} />
+            <SpeedMeter intervalValue={intervalValue} />
+            {animationMode ? null : (
+              <Button
+                className="btn btn-light btn-sm mt-2"
+                textContent="&gt;&gt; 10x"
+                onClick={() => setIntervalValue((intervalValue) => intervalValue / 10)}
+              />
+            )}
+            <Button className={buttonClasses} textContent={LABELS.ADD_WEEK} onClick={() => setModelDate((prev) => prev.add(1, "w"))} />
+            <Button className={buttonClasses} textContent={LABELS.ADD_MONTH} onClick={() => setModelDate((prev) => prev.add(1, "M"))} />
+            <Button className={buttonClasses} textContent={LABELS.ADD_YEAR} onClick={() => setModelDate((prev) => prev.add(1, "y"))} />
+          </section>
+          <section className="panel right">
+            <Checkbox checked={animationMode} handleOnChange={handleAnimationToggler} label={LABELS.ANIMATION} />
+            <Checkbox checked={showOrbits} handleOnChange={() => toggleShowingOrbits(!showOrbits)} label={LABELS.SHOW_ORBITS} />
+            <Checkbox checked={clearMode} handleOnChange={() => toggleclearMode(!clearMode)} label={LABELS.CLEAR_CANVAS} />
+          </section>
+      </div>
       <canvas ref={canvasRef} width={width} height={height} />
-    </div>
+    </>
+    
   );
 };
 
