@@ -1,17 +1,12 @@
-import { FC, MouseEventHandler } from "react";
+import { FC } from "react";
+import { IButtonProps } from "../interfaces/props/IButtonProps";
 
-interface ButtonProps {
-  className: string;
-  textContent: string;
-  onClick: MouseEventHandler<HTMLButtonElement>;
-}
-
-const Button: FC<ButtonProps> = (props) => {
-  const { className, textContent, onClick } = props;
+const Button: FC<IButtonProps> = (props): JSX.Element => {
+  const { className, onClick, label } = props;
 
   return (
     <button className={className} onClick={onClick}>
-      {textContent}
+      {label}
     </button>
   );
 };

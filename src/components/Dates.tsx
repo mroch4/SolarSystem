@@ -1,15 +1,8 @@
 import { FC } from "react";
-import moment from "moment";
-
+import { IDatesProps } from "../interfaces/props/IDatesProps";
 import LABELS from "../common/Labels";
 
-interface DatesProps {
-  currentDate: moment.Moment;
-  modelDate: moment.Moment;
-  timeSpan: number;
-}
-
-const Dates: FC<DatesProps> = (props) => {
+const Dates: FC<IDatesProps> = (props): JSX.Element => {
   const { currentDate, modelDate, timeSpan } = props;
 
   return (

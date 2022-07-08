@@ -1,19 +1,10 @@
-import { BASE_MODEL_ORBIT, BASE_MODEL_RADIUS } from "./AppSettings";
-import { RELATIVE_RADIUS, SIDEREALS, EARTH_SIDEREAL } from "./AstroData";
+import { BASE_MODEL_ORBIT, BASE_MODEL_RADIUS } from "./Settings";
+import { EARTH_SIDEREAL, RELATIVE_RADIUS, SIDEREALS } from "./Constans";
+
 import { COLORS } from "./Colors";
+import { IPlanet } from "../interfaces/IPlanet";
 
-interface Satellite {
-  siderealPeriod: number;
-  modelRadius: number;
-  modelOrbit: number;
-}
-
-interface Planet extends Satellite {
-  color: string;
-  satellites: Satellite[] | null;
-}
-
-export const planets: Planet[] = [
+export const planets: IPlanet[] = [
   {
     color: COLORS.Mercury,
     siderealPeriod: SIDEREALS.Mercury,
