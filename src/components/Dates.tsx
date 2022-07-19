@@ -1,23 +1,29 @@
 import { FC } from "react";
-import { IDatesProps } from "../interfaces/props/IDatesProps";
-import LABELS from "../common/Labels";
+import { IDates } from "./props/IDates";
+import { useAppContext } from "../hooks/useAppContext";
 
-const Dates: FC<IDatesProps> = (props): JSX.Element => {
+const Dates: FC<IDates> = (props): JSX.Element => {
   const { currentDate, modelDate, timeSpan } = props;
+
+  const { labels } = useAppContext();
+
+  const dateFormat = "D/M/YYYY";
+  const currentDateFormatted = currentDate.format(dateFormat);
+  const modelDateFormatted = modelDate.format(dateFormat);
 
   return (
     <>
       <div className="d-flex justify-content-between">
-        <span className="d-flex">{LABELS.CURRENT_DATE}</span>
-        <span className="d-flex">{currentDate.format("D/M/YYYY")}</span>
+        <span className="d-flex">{labels.CURRENT_DATE}</span>
+        <span className="d-flex">{currentDateFormatted}</span>
       </div>
       <div className="d-flex justify-content-between">
-        <span className="d-flex">{LABELS.MODELS_DATE}</span>
-        <span className="d-flex">{modelDate.format("D/M/YYYY")}</span>
+        <span className="d-flex">{labels.MODELS_DATE}</span>
+        <span className="d-flex">{modelDateFormatted}</span>
       </div>
       <div className="d-flex justify-content-end">
         <span>
-          + {timeSpan} {timeSpan === 1 ? LABELS.DAY : LABELS.DAYS}
+          + {timeSpan} {timeSpan === 1 ? labels.DAY : labels.DAYS}
         </span>
       </div>
     </>

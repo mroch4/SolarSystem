@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { IButtonProps } from "../interfaces/props/IButtonProps";
+import { IButton } from "./props/IButton";
 
-const Button: FC<IButtonProps> = (props): JSX.Element => {
+const Button: FC<IButton> = (props): JSX.Element => {
   const { className, onClick, label } = props;
 
   return (

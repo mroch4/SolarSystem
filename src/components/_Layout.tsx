@@ -1,19 +1,24 @@
-import { drawObject, drawOrbit, getCoordinates } from "../common/Helpers";
+import { BASE_MODEL_RADIUS, PLANETS } from "../common/Factory";
 import { useEffect, useRef, useState } from "react";
 
-import { BASE_MODEL_RADIUS } from "../common/Settings";
 import Button from "./Button";
 import { COLORS } from "../common/Colors";
 import Checkbox from "./Checkbox";
+import { Container } from "react-bootstrap";
 import Counter from "./Counter";
 import Dates from "./Dates";
-import LABELS from "../common/Labels";
+import { LABELS } from "../labels/Labels";
 import { RELATIVE_RADIUS } from "../common/Constans";
+import { drawObject } from "../helpers/drawObject";
+import { drawOrbit } from "../helpers/drawOrbit";
+import { getCoordinates } from "../helpers/getCoordinates";
 import moment from "moment";
-import { planets } from "../common/Factory";
+import { useAppContext } from "../hooks/useAppContext";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 
-const Canvas = (): JSX.Element => {
+const Layout = (): JSX.Element => {
+  const { intl, labels, changeIntl } = useAppContext();
+
   const [currentDate] = useState<moment.Moment>(moment());
   const [modelDate, setModelDate] = useState<moment.Moment>(currentDate);
   const [timeSpan, setTimeSpan] = useState<number>(0);
@@ -46,10 +51,10 @@ const Canvas = (): JSX.Element => {
         drawObject(context, centerX, centerY, BASE_MODEL_RADIUS * RELATIVE_RADIUS.Sun, "yellow");
 
         if (showOrbits) {
-          planets.map((planet) => drawOrbit(context, centerX, centerY, planet.modelOrbit));
+          PLANETS.map((planet) => drawOrbit(context, centerX, centerY, planet.modelOrbit));
         }
 
-        planets.map((planet) => {
+        PLANETS.map((planet) => {
           const planetCoordinates = getCoordinates(centerX, centerY, planet.modelOrbit, (timeSpan * 360) / planet.siderealPeriod);
           drawObject(context, planetCoordinates.x, planetCoordinates.y, planet.modelRadius, planet.color);
 
@@ -91,19 +96,19 @@ const Canvas = (): JSX.Element => {
   const weekButtonProps = {
     className: buttonClasses,
     onClick: () => setModelDate((prev) => prev.add(1, "w")),
-    label: LABELS.ADD_WEEK,
+    label: labels.ADD_WEEK,
   };
 
   const monthButtonProps = {
     className: buttonClasses,
     onClick: () => setModelDate((prev) => prev.add(1, "M")),
-    label: LABELS.ADD_MONTH,
+    label: labels.ADD_MONTH,
   };
 
   const yearButtonProps = {
     className: buttonClasses,
     onClick: () => setModelDate((prev) => prev.add(1, "y")),
-    label: LABELS.ADD_YEAR,
+    label: labels.ADD_YEAR,
   };
 
   const animationCheckboxProps = {
@@ -112,19 +117,34 @@ const Canvas = (): JSX.Element => {
       animationMode ? setIntervalValue(1000) : setIntervalValue(25);
       toggleAnimationMode(!animationMode);
     },
-    label: LABELS.ANIMATION,
+    label: labels.ANIMATION,
   };
 
   const orbitsCheckboxProps = {
     checked: showOrbits,
     handleOnChange: () => toggleShowingOrbits(!showOrbits),
-    label: LABELS.SHOW_ORBITS,
+    label: labels.SHOW_ORBITS,
+  };
+
+  const isPL = intl === LABELS[0].intl;
+  const handleLanguageChange = () => {
+    if (isPL) {
+      changeIntl(LABELS[1].intl);
+    } else {
+      changeIntl(LABELS[0].intl);
+    }
+  };
+
+  const languageCheckboxProps = {
+    checked: isPL,
+    handleOnChange: () => handleLanguageChange(),
+    label: "English",
   };
 
   const canvasCheckboxProps = {
     checked: clearMode,
     handleOnChange: () => toggleclearMode(!clearMode),
-    label: LABELS.CLEAR_CANVAS,
+    label: labels.CLEAR_CANVAS,
   };
 
   const canvasProps = {
@@ -135,7 +155,7 @@ const Canvas = (): JSX.Element => {
 
   return (
     <>
-      <div className="container">
+      <Container>
         <section className="panel left">
           <Dates {...datesProps} />
           <Counter intervalValue={intervalValue} />
@@ -148,11 +168,12 @@ const Canvas = (): JSX.Element => {
           <Checkbox {...animationCheckboxProps} />
           <Checkbox {...orbitsCheckboxProps} />
           <Checkbox {...canvasCheckboxProps} />
+          <Checkbox {...languageCheckboxProps} />
         </section>
-      </div>
+      </Container>
       <canvas {...canvasProps} />
     </>
   );
 };
 
-export default Canvas;
+export default Layout;

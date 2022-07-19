@@ -59,8 +59,7 @@ Legend:
 
 ## TODO's
 
-Find the starting point for current date(!)\
-Canvas.jsx => Canvas.tsx (null ref error)
+Find the starting point for current date(!)
 
 ## Page URL:
 

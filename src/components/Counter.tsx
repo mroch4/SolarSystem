@@ -1,15 +1,19 @@
 import { FC } from "react";
-import { ICounterProps } from "../interfaces/props/ICounterProps";
-import LABELS from "../common/Labels";
+import { ICounter } from "./props/ICounter";
+import { useAppContext } from "../hooks/useAppContext";
 
-const Counter: FC<ICounterProps> = (props): JSX.Element => {
+const Counter: FC<ICounter> = (props): JSX.Element => {
   const { intervalValue } = props;
+
+  const { labels } = useAppContext();
+
+  const counter = Math.floor(1000 / props.intervalValue);
 
   return (
     <div className="d-flex justify-content-center">
-      <span>{LABELS.COMPARE}</span>
-      <span>&nbsp;{Math.floor(1000 / intervalValue)}&nbsp;</span>
-      <span>{intervalValue === 1000 ? LABELS.DAY : LABELS.DAYS}</span>
+      <span>{labels.COMPARE}</span>
+      <span>&nbsp;{counter}&nbsp;</span>
+      <span>{intervalValue === 1000 ? labels.DAY : labels.DAYS}</span>
     </div>
   );
 };

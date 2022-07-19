@@ -1,7 +1,12 @@
-import Layout from "./components/Layout";
+import ContextProvider from "./contexts/Context";
+import Layout from "./components/_Layout";
 
-function App(): JSX.Element {
-  return <Layout />;
-}
+const App = (): JSX.Element => {
+  return (
+    <ContextProvider>
+      <Layout />
+    </ContextProvider>
+  );
+};
 
 export default App;

@@ -34,5 +34,5 @@ export const SIDEREALS = {
   Titania: 8.706,
   Oberon: 13.46,
   Neptune: 164.8 * EARTH_SIDEREAL,
-  Triton: -5.877,
+  Triton: 5.877,
 };
